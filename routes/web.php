@@ -1,11 +1,18 @@
 <?php
 
+use App\Events\WizzEvent;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
+
+Route::get('/wizz', function () {
+    WizzEvent::dispatch("Message from route.");
+
+    return null;
+});
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
